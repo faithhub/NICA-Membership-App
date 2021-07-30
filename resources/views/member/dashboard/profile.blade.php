@@ -149,7 +149,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Contact Address:</label>
-                            <textarea class="form-control" id="review" placeholder="Conatct Address" name="address">{{Auth::user()->address}}</textarea>
+                            <textarea class="form-control" id="review" name="address">{{Auth::user()->address}}</textarea>
                             @error('address')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
@@ -165,7 +165,8 @@
                             </span>
                             @enderror
                           </div>
-                          <p>Institutions Attended, Qualifications and Dates</p>
+                          <fieldset>
+                            <legend>Institutions Attended, Qualifications and Dates</legend>
                           <div class="row">
                             <div class="col-sm-4">
                               <div class="form-group">
@@ -201,10 +202,11 @@
                               </div>
                             </div>
                           </div>
+                          </fieldset>
 
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Professional Qualifications/Certifications with Dates:</label>
-                            <textarea class="form-control" id="review" placeholder="Professional Qualifications/Certifications with Dates" name="prof_qualification">{{Auth::user()->prof_qualification}}</textarea>
+                            <textarea class="form-control" id="review" name="prof_qualification">{{Auth::user()->prof_qualification}}</textarea>
                             @error('prof_qualification')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
@@ -213,7 +215,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Present Institution/Organisation:</label>
-                            <textarea class="form-control" id="review" placeholder="Present Institution/Organisation" name="present_org">{{Auth::user()->present_org}}</textarea>
+                            <textarea class="form-control" id="review" name="present_org">{{Auth::user()->present_org}}</textarea>
                             @error('present_org')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
@@ -222,7 +224,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Present Appointment:</label>
-                            <textarea class="form-control" id="review" placeholder="Present Appointment" name="present_appointment">{{Auth::user()->present_appointment}}</textarea>
+                            <textarea class="form-control" id="review" name="present_appointment">{{Auth::user()->present_appointment}}</textarea>
                             @error('present_appointment')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
@@ -231,8 +233,8 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Area(s) of Specialisation:</label>
-                            <textarea class="form-control" id="review" placeholder="Area(s) of Specialisation" name="area_specs	">{{Auth::user()->area_specs}}</textarea>
-                            @error('area_specs	')
+                            <textarea class="form-control" id="review" name="area_specs	">{{Auth::user()->area_specs}}</textarea>
+                            @error('area_specs ')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
                             </span>
@@ -240,7 +242,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Any other information you think will help the council in considering your application:</label>
-                            <textarea class="form-control" id="review" placeholder="Any other information you think will help the council in considering your application" name="other_info">{{Auth::user()->other_info}}</textarea>
+                            <textarea class="form-control" id="review" name="other_info">{{Auth::user()->other_info}}</textarea>
                             @error('other_info')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
@@ -250,7 +252,7 @@
 
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Names, address and phone number of two referees who should be current members of the Association:</label>
-                            <textarea class="form-control" id="review" placeholder="Names, address and phone number of two referees who should be current members of the Association" name="referees">{{Auth::user()->referees}}</textarea>
+                            <textarea class="form-control" id="review" name="referees">{{Auth::user()->referees}}</textarea>
                             @error('referees')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
@@ -258,13 +260,13 @@
                             @enderror
                           </div>
                           <div class="form-group">
-													<div class="checkbox checkbox-success">
-														<input id="checkbox_hr" type="checkbox" name="terms">
-														<label for="checkbox_hr">
-															I hereby declare that all the information submitted on this form are true and that I will abide by the rules and regulations of Nigerian Corrosion Association.
-														</label>
-													</div>
-</div>
+                            <div class="checkbox checkbox-success">
+                              <input id="checkbox_hr" type="checkbox" name="terms" {{ old('terms') ? 'checked' : '' }}>
+                              <label for="checkbox_hr">
+                                I hereby declare that all the information submitted on this form are true and that I will abide by the rules and regulations of Nigerian Corrosion Association.
+                              </label>
+                            </div>
+                          </div>
 
                           <div class="form-group mb-0">
                             <button type="submit" class="btn btn-success  mr-10">Submit</button>

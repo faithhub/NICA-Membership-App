@@ -42,3 +42,17 @@
 
 <!-- Fancy Dropdown JS -->
 <script src="{{ asset('dist/js/dropdown-bootstrap-extended.js') }}"></script>
+
+
+<script src="{{ asset('dist/js/export-table-data.js') }}"></script>
+
+
+<script src="{{ asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
+<script src="{{ asset('vendors/bower_components/pdfmake/build/pdfmake.min.js') }}"></script>
+<script src="{{ asset('vendors/bower_components/pdfmake/build/vfs_fonts.js') }}"></script>
+
+<script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
