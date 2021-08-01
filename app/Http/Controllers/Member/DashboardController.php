@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class DashboardController extends Controller
                 'phone_number' => ['required', 'numeric', 'unique:users,phone_number,' . Auth::user()->id],
                 'surname' => ['required', 'max:255'],
                 'other_name' => ['required', 'max:255'],
-                'avatar' => 'image|mimes:jpg,jpeg,png|max:5000',
+                'avatar' => 'max:5000',
                 'dob' => ['required'],
                 'sex' => ['required'],
                 'marital_status' => ['required'],
@@ -83,7 +84,7 @@ class DashboardController extends Controller
                 if ($request->file('avatar')) {
                     $file = $request->file('avatar');
                     $picture = 'PP' . date('dMY') . time() . '.' . $file->getClientOriginalExtension();
-                    $pictureDestination = 'uploads/avatar';
+                    $pictureDestination = 'uploads/member_avatar';
                     $file->move($pictureDestination, $picture);
                 }
                 try {
@@ -120,6 +121,7 @@ class DashboardController extends Controller
         } else {
             $data['title'] = 'Membership Profile';
             $data['member'] = $u = User::find(Auth::user()->id);
+            $data['countries'] = Country::orderBy('nicename', 'ASC')->get();
             return view('member.dashboard.profile', $data);
         }
     }
@@ -129,5 +131,12 @@ class DashboardController extends Controller
         $data['title'] = 'Membership Plan';
         $data['member'] = $u = User::find(Auth::user()->id);
         return view('member.dashboard.subscription', $data);
+    }
+
+    public function resources()
+    {
+        $data['title'] = 'Resources';
+        // $data['member'] = $u = User::find(Auth::user()->id);
+        return view('member.dashboard.resources', $data);
     }
 }

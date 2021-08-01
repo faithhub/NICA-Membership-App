@@ -30,6 +30,9 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'active', 'verified
     Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Member\DashboardController::class, 'profile'])->name('profile');
     Route::get('/subscription', [\App\Http\Controllers\Member\DashboardController::class, 'plan'])->name('subscription')->middleware('updated');
 
+
+    Route::get('resources', [\App\Http\Controllers\Member\DashboardController::class, 'resources'])->name('resources');
+
     //Settings
     // Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Student\SettingsController::class, 'index'])->name('student_profile');
     // Route::post('/change-password', [\App\Http\Controllers\Student\ChangePasswordController::class, 'change'])->name('change-password');
@@ -82,6 +85,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
     //Paymets
     Route::get('payments', [\App\Http\Controllers\Admin\DashboardController::class, 'payments'])->name('admin_payment');
+    Route::match(['get', 'post'], 'update-payment-account', [\App\Http\Controllers\Admin\DashboardController::class, 'add_payment'])->name('admin_add_payment');
+
+    //Resources
+    Route::get('resources', [\App\Http\Controllers\Admin\DashboardController::class, 'resources'])->name('admin_resource');
+    Route::match(['get', 'post'], 'add-resource', [\App\Http\Controllers\Admin\DashboardController::class, 'add_resource'])->name('admin_add_resource');
 
     //Settings
     // Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin_profile');

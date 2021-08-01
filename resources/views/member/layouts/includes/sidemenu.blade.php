@@ -7,7 +7,7 @@
 			<a href="{{ route('subscription') }}" class="{{ request()->is('member/subscription*') ? 'active' : '' }}"><i class="fa fa-money mr-10"></i>Subscription</a>
 		</li>
 		<li>
-			<a href="{{ route('logout') }}" class="{{ request()->is('member/assignments*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i>Resources</a>
+			<a href="{{ route('resources') }}" class="{{ request()->is('member/resources*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i>Resources</a>
 		</li>
 		<li>
 			<a href="{{ route('profile') }}" class="{{ request()->is('member/profile') ? 'active' : '' }}"><i class="fa fa-users mr-10"></i>Membership Profile</a>

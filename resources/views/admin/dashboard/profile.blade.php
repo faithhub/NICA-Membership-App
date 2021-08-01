@@ -35,12 +35,23 @@
                   <div class="row mt-40">
                     <div class="col-sm-12">
                       <div class="form-wrap">
-                        <form method="POST" action="{{ route('admin_profile') }}">
+                        <form method="POST" action="{{ route('admin_profile') }}" enctype="multipart/form-data">
                           @csrf
                           <!-- <div class="form-group">
                             <label class="control-label mb-10" for="review">Your rating</label>
                             <div class='product-rating starrr' id='star1'></div>
                           </div> -->
+                          <div class="row">
+                            <div class="form-group">
+                              <label class="control-label mb-10" for="exampleInputEmail_2">Picture</label>
+                              <input type="file" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->avatar }}" name="avatar" accept="image/*">
+                              @error('avatar')
+                              <span class="invalid-feedback" role="alert" style="display: block;">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
+                            </div>
+                          </div>
                           <div class="row">
                             <div class="col-sm-6">
                               <div class="form-group">

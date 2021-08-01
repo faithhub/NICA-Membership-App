@@ -81,7 +81,11 @@
                       <tr>
                         <td width="20%">Date of Birth</td>
                         <td>
-                          {{ date('D, M j, Y \a\t g:ia', strtotime(Auth::user()->dob)) ?? "Not Updated Yet"}}
+                          @php
+                          $birthday = Auth::user()->dob;
+                          $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y years');
+                          @endphp
+                          {{$age}}
                         </td>
                       </tr>
                       <tr>

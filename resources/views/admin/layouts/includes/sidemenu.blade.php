@@ -18,10 +18,26 @@
 			<a href="{{ route('admin_subscription') }}" class="{{ request()->is('admin/subscription*') ? 'active' : '' }}"><i class="fa fa-money mr-10"></i>Subscriptions</a>
 		</li>
 		<li>
-			<a href="{{ route('admin_payment') }}" class="{{ request()->is('admin/payments*') ? 'active' : '' }}"><i class="fa fa-money mr-10"></i>Payments</a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_drrr" class="{{ request()->is('admin/payments*') || request()->is('admin/update-payment-account*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i> Payments <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+			<ul id="dashboard_drrr" class="collapse collapse-level-1">
+				<li>
+					<a href="{{ route('admin_payment') }}">All Payment</a>
+				</li>
+				<li>
+					<a href="{{ route('admin_add_payment') }}">Update Account Details</a>
+				</li>
+			</ul>
 		</li>
 		<li>
-			<a href="{{ route('logout') }}" class="{{ request()->is('admin/assignments*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i>Resources</a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_drr" class="{{ request()->is('admin/resources*') || request()->is('admin/add-resource*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i> Resources <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+			<ul id="dashboard_drr" class="collapse collapse-level-1">
+				<li>
+					<a href="{{ route('admin_resource') }}">All Resources</a>
+				</li>
+				<li>
+					<a href="{{ route('admin_add_resource') }}">Add New Resource</a>
+				</li>
+			</ul>
 		</li>
 		<li>
 			<a href="{{ route('admin_profile') }}" class="{{ request()->is('admin/profile') ? 'active' : '' }}"><i class="fa fa-user mr-10"></i>My Profile</a>

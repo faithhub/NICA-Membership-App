@@ -35,12 +35,23 @@
                   <div class="row mt-40">
                     <div class="col-sm-12">
                       <div class="form-wrap">
-                        <form method="POST" action="{{ route('profile') }}">
+                        <form method="POST" action="{{ route('profile') }}" enctype="multipart/form-data">
                           @csrf
                           <!-- <div class="form-group">
                             <label class="control-label mb-10" for="review">Your rating</label>
                             <div class='product-rating starrr' id='star1'></div>
                           </div> -->
+                          <div class="row">
+                            <div class="form-group">
+                              <label class="control-label mb-10" for="exampleInputEmail_2">Picture</label>
+                              <input type="file" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->avatar }}" name="avatar" accept="image/*">
+                              @error('avatar')
+                              <span class="invalid-feedback" role="alert" style="display: block;">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
+                            </div>
+                          </div>
                           <div class="row">
                             <div class="col-sm-6">
                               <div class="form-group">
@@ -106,8 +117,8 @@
                                 <label class="control-label mb-10" for="exampleInputEmail_2">Sex</label>
                                 <select class="form-control" name="sex">
                                   <option value="">Select Sex</option>
-                                  <option value="Male">Male</option>
-                                  <option value="Female">Female</option>
+                                  <option value="Male" {{Auth::user()->sex == "Male" ? 'selected' : "" }}>Male</option>
+                                  <option value="Female" {{Auth::user()->sex == "Female" ? 'selected' : "" }}>Female</option>
                                 </select>
                                 @error('sex')
                                 <span class="invalid-feedback" role="alert" style="display: block;">
@@ -123,8 +134,8 @@
                                 <label class="control-label mb-10" for="exampleInputEmail_2">Marital Status</label>
                                 <select class="form-control" name="marital_status">
                                   <option value="">Select Marital Status</option>
-                                  <option value="Single">Single</option>
-                                  <option value="Married">Married</option>
+                                  <option value="Single" {{Auth::user()->marital_status == "Single" ? 'selected' : "" }}>Single</option>
+                                  <option value="Married" {{Auth::user()->marital_status == "Married" ? 'selected' : "" }}>Married</option>
                                 </select>
                                 @error('marital_status')
                                 <span class="invalid-feedback" role="alert" style="display: block;">
@@ -138,6 +149,11 @@
                                 <label class="control-label mb-10" for="exampleInputEmail_2">Nationality</label>
                                 <select class="form-control" name="country">
                                   <option value="">Select Country</option>
+                                  @isset($countries)
+                                  @foreach($countries as $country)
+                                  <option value="{{$country->nicename}}" {{Auth::user()->country == $country->nicename ? 'selected' : "" }}>{{$country->nicename}}</option>
+                                  @endforeach
+                                  @endisset
                                 </select>
                                 @error('country')
                                 <span class="invalid-feedback" role="alert" style="display: block;">
