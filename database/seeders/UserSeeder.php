@@ -26,13 +26,14 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => 'Admin'
             ],
-            // [
-            //     'unique' => Str::random(10),
-            //     'name' => Str::random(10),
-            //     'email' => 'student@gmail.com',
-            //     'password' => Hash::make('password'),
-            //     'role' => 'Student'
-            // ],
+            [
+                'surname' => Str::random(10),
+                'other_name' => Str::random(10),
+                'email' => 'adebayooluwadara@gmail.com',
+                'phone_number' => Str::random(10),
+                'password' => Hash::make('Oluwadara+1'),
+                'role' => 'Member'
+            ],
             // [
             //     'unique' => Str::random(10),
             //     'name' => Str::random(10),

@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->string('area_specs')->nullable();
             $table->string('other_info')->nullable();
             $table->string('referees')->nullable();
+            $table->enum('acc_status', ['Updated', 'Notupdated'])->default('Notupdated');
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->enum('role', ['Admin', 'Member'])->default('Member');
             $table->enum('member', ['None', 'Student', 'Graduate', 'Member', 'Fellow', 'Corporate Firm'])->default('None');

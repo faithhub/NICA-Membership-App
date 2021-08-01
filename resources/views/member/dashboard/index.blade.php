@@ -99,7 +99,7 @@
                     </tbody>
                   </table>
                   <div class="text-right mt-3">
-                    <a class="btn btn-success" href="{{ route('profile') }}">Edit Profile</a>
+                    <a class="btn btn-success" href="{{ route('profile') }}">Update Profile</a>
                   </div>
                 </div>
               </div>
