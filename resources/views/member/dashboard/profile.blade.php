@@ -167,41 +167,41 @@
                           </div>
                           <fieldset>
                             <legend>Institutions Attended, Qualifications and Dates</legend>
-                          <div class="row">
-                            <div class="col-sm-4">
-                              <div class="form-group">
-                                <label class="control-label mb-10" for="exampleInputuname">Secondary</label>
-                                <input type="text" class="form-control" id="exampleInputuname_2" value="{{ Auth::user()->sec_sch }}" name="sec_sch" />
-                                @error('sec_sch')
-                                <span class="invalid-feedback" role="alert" style="display: block;">
-                                  <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <div class="form-group">
+                                  <label class="control-label mb-10" for="exampleInputuname">Secondary</label>
+                                  <input type="text" class="form-control" id="exampleInputuname_2" value="{{ Auth::user()->sec_sch }}" name="sec_sch" />
+                                  @error('sec_sch')
+                                  <span class="invalid-feedback" role="alert" style="display: block;">
+                                    <strong>{{ $message }}</strong>
+                                  </span>
+                                  @enderror
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="form-group">
+                                  <label class="control-label mb-10" for="exampleInputEmail_2">University</label>
+                                  <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->uni_sch }}" name="uni_sch">
+                                  @error('uni_sch')
+                                  <span class="invalid-feedback" role="alert" style="display: block;">
+                                    <strong>{{ $message }}</strong>
+                                  </span>
+                                  @enderror
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="form-group">
+                                  <label class="control-label mb-10" for="exampleInputEmail_2">Others</label>
+                                  <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->other_sch }}" name="other_sch">
+                                  @error('other_sch')
+                                  <span class="invalid-feedback" role="alert" style="display: block;">
+                                    <strong>{{ $message }}</strong>
+                                  </span>
+                                  @enderror
+                                </div>
                               </div>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="form-group">
-                                <label class="control-label mb-10" for="exampleInputEmail_2">University</label>
-                                <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->uni_sch }}" name="uni_sch">
-                                @error('uni_sch')
-                                <span class="invalid-feedback" role="alert" style="display: block;">
-                                  <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                              </div>
-                            </div>
-                            <div class="col-sm-4">
-                              <div class="form-group">
-                                <label class="control-label mb-10" for="exampleInputEmail_2">Others</label>
-                                <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->other_sch }}" name="other_sch">
-                                @error('other_sch')
-                                <span class="invalid-feedback" role="alert" style="display: block;">
-                                  <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                              </div>
-                            </div>
-                          </div>
                           </fieldset>
 
                           <div class="form-group">
@@ -233,8 +233,8 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label mb-10" for="review">Area(s) of Specialisation:</label>
-                            <textarea class="form-control" id="review" name="area_specs	">{{Auth::user()->area_specs}}</textarea>
-                            @error('area_specs ')
+                            <textarea class="form-control" id="review" name="area_specs">{{Auth::user()->area_specs}}</textarea>
+                            @error('area_specs')
                             <span class="invalid-feedback" role="alert" style="display: block;">
                               <strong>{{ $message }}</strong>
                             </span>
@@ -266,6 +266,11 @@
                                 I hereby declare that all the information submitted on this form are true and that I will abide by the rules and regulations of Nigerian Corrosion Association.
                               </label>
                             </div>
+                            @error('terms')
+                            <span class="invalid-feedback" role="alert" style="display: block;">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                           </div>
 
                           <div class="form-group mb-0">
