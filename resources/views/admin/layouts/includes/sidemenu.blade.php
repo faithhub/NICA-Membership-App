@@ -18,7 +18,7 @@
 			<a href="{{ route('admin_subscription') }}" class="{{ request()->is('admin/subscription*') ? 'active' : '' }}"><i class="fa fa-money mr-10"></i>Subscriptions</a>
 		</li>
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_drrr" class="{{ request()->is('admin/payments*') || request()->is('admin/update-payment-account*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i> Payments <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_drrr" class="{{ request()->is('admin/payments*') || request()->is('admin/update-payment-account*') ? 'active' : '' }}"><i class="fa fa-money mr-10"></i> Payments <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 			<ul id="dashboard_drrr" class="collapse collapse-level-1">
 				<li>
 					<a href="{{ route('admin_payment') }}">All Payment</a>

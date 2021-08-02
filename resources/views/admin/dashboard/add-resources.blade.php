@@ -47,18 +47,18 @@
                               </span>
                               @enderror
                             </div>
-                          </div>                          
+                          </div>
                           <div class="row">
                             <div class="form-group">
                               <label class="control-label mb-10" for="exampleInputEmail_2">Content</label>
-                              <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->avatar }}" name="acc_name">
+                              <textarea class="textarea_editor form-control" rows="15" placeholder="Enter text ..." name="acc_name"></textarea>
                               @error('acc_name')
                               <span class="invalid-feedback" role="alert" style="display: block;">
                                 <strong>{{ $message }}</strong>
                               </span>
                               @enderror
                             </div>
-                          </div>                       
+                          </div>
                           <div class="row">
                             <div class="form-group">
                               <label class="control-label mb-10" for="exampleInputEmail_2">File</label>

@@ -21,11 +21,11 @@
 
     <!-- Row -->
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 col-md-6">
         <div class="panel panel-default card-view">
           <div class="panel-heading">
             <div class="pull-left">
-              <h6 class="panel-title txt-dark">Payment Account Update</h6>
+              <h6 class="panel-title txt-dark">Update Subscription Account Details</h6>
             </div>
           </div>
           <div class="panel-wrapper collapse in">
@@ -35,34 +35,34 @@
                   <div class="row mt-40">
                     <div class="col-sm-12">
                       <div class="form-wrap">
-                        <form method="POST" action="{{ route('admin_profile') }}">
+                        <form method="POST" action="{{ route('admin_add_payment') }}">
                           @csrf
                           <div class="row">
                             <div class="form-group">
                               <label class="control-label mb-10" for="exampleInputEmail_2">Account Bank</label>
-                              <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->avatar }}" name="bank">
+                              <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ $settings->bank }}" name="bank">
                               @error('bank')
                               <span class="invalid-feedback" role="alert" style="display: block;">
                                 <strong>{{ $message }}</strong>
                               </span>
                               @enderror
                             </div>
-                          </div>                          
+                          </div>
                           <div class="row">
                             <div class="form-group">
                               <label class="control-label mb-10" for="exampleInputEmail_2">Account Name</label>
-                              <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->avatar }}" name="acc_name">
+                              <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ $settings->acc_name }}" name="acc_name">
                               @error('acc_name')
                               <span class="invalid-feedback" role="alert" style="display: block;">
                                 <strong>{{ $message }}</strong>
                               </span>
                               @enderror
                             </div>
-                          </div>                       
+                          </div>
                           <div class="row">
                             <div class="form-group">
                               <label class="control-label mb-10" for="exampleInputEmail_2">Account Number</label>
-                              <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ Auth::user()->avatar }}" name="acc_number">
+                              <input type="number" class="form-control" id="exampleInputEmail_2" value="{{ $settings->acc_number }}" name="acc_number">
                               @error('acc_number')
                               <span class="invalid-feedback" role="alert" style="display: block;">
                                 <strong>{{ $message }}</strong>
@@ -83,7 +83,51 @@
           </div>
         </div>
       </div>
-    </div>S
+
+      <div class="col-sm-12 col-md-6">
+        <div class="panel panel-default card-view">
+          <div class="panel-heading">
+            <div class="pull-left">
+              <h6 class="panel-title txt-dark">Subscription Account Details</h6>
+            </div>
+          </div>
+          <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+              <div id="example-tabs">
+                <section>
+                  <div class="row mt-40">
+                    <div class="col-sm-12">
+                      <div class="form-wrap">
+                        <form>
+                          <div class="row">
+                            <div class="form-group">
+                              <label class="control-label mb-10" for="exampleInputEmail_2">Account Bank</label>
+                              <h4><strong>{{$settings->bank ?? "Not uploaded yet" }}</strong></h4>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <label class="control-label mb-10" for="exampleInputEmail_2">Account Name</label>
+                              <h4><strong>{{$settings->acc_name ?? "Not uploaded yet" }}</strong></h4>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <label class="control-label mb-10" for="exampleInputEmail_2">Account Number</label>
+                              <h4><strong>{{$settings->acc_number ?? "Not uploaded yet" }}</strong></h4>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- /Row -->
   </div>
 </div>

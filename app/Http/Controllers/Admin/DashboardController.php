@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Department;
 use App\Models\Faculties;
 use App\Models\Schools;
+use App\Models\Settings;
 use App\Models\Subject;
 use App\Models\Subscription;
 use App\Models\User;
@@ -87,7 +88,6 @@ class DashboardController extends Controller
             $validator = Validator::make($request->all(), $rules);
             $validator->setAttributeNames($fieldNames);
             if ($validator->fails()) {
-                dd($validator);
                 Session::flash('warning', 'Please check the form again!');
                 return back()->withErrors($validator)->withInput();
             } else {
@@ -208,11 +208,42 @@ class DashboardController extends Controller
         return view('admin.dashboard.payment', $data);
     }
 
-    public function add_payment()
+    public function add_payment(Request $request)
     {
         if ($_POST) {
+            $rules = array(
+                'bank' => ['required', 'max:255'],
+                'acc_number' => ['required', 'numeric'],
+                'acc_name' => ['required', 'max:255'],
+            );
+            $fieldNames = array(
+                'bank'   => 'Bank Name',
+                'acc_number'  => 'Account Number',
+                'acc_name'  => 'Account Name'
+            );
+            //dd($request->all());
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($fieldNames);
+            if ($validator->fails()) {
+                Session::flash('warning', 'Please check the form again!');
+                return back()->withErrors($validator)->withInput();
+            } else {
+                try {
+                    $settings = Settings::find(1);
+                    $settings->bank = $request->bank;
+                    $settings->acc_number = $request->acc_number;
+                    $settings->acc_name = $request->acc_name;
+                    $settings->save();
+                    Session::flash('success', 'Account Details Updated Successfully');
+                    return redirect('admin/update-payment-account');
+                } catch (\Throwable $th) {
+                    Session::flash('error', $th->getMessage());
+                    return redirect('admin/update-payment-account');
+                }
+            }
         } else {
             $data['title'] = 'Update Subscription Payments Account Details';
+            $data['settings'] = Settings::find(1);
             return view('admin.dashboard.account_details', $data);
         }
     }
@@ -224,9 +255,39 @@ class DashboardController extends Controller
         return view('admin.dashboard.all_resources', $data);
     }
 
-    public function add_resource()
+    public function add_resource(Request $request)
     {
         if ($_POST) {
+            $rules = array(
+                'bank' => ['required', 'max:255'],
+                'acc_number' => ['required', 'numeric'],
+                'acc_name' => ['required', 'max:255'],
+            );
+            $fieldNames = array(
+                'bank'   => 'Bank Name',
+                'acc_number'  => 'Account Number',
+                'acc_name'  => 'Account Name'
+            );
+            //dd($request->all());
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($fieldNames);
+            if ($validator->fails()) {
+                Session::flash('warning', 'Please check the form again!');
+                return back()->withErrors($validator)->withInput();
+            } else {
+                try {
+                    $settings = Settings::find(1);
+                    $settings->bank = $request->bank;
+                    $settings->acc_number = $request->acc_number;
+                    $settings->acc_name = $request->acc_name;
+                    $settings->save();
+                    Session::flash('success', 'Account Details Updated Successfully');
+                    return redirect('admin/update-payment-account');
+                } catch (\Throwable $th) {
+                    Session::flash('error', $th->getMessage());
+                    return redirect('admin/update-payment-account');
+                }
+            }
         } else {
             $data['title'] = 'Add New Resources';
             return view('admin.dashboard.add-resources', $data);
