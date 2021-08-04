@@ -91,9 +91,9 @@
                           {{$sn++}}
                         </td>
                         <td>{{$plan->name}}</td>
-                        <td>{{$plan->price}}</td>
+                        <td>₦{{number_format($plan->price)}}</td>
                         <td>
-                          <a class="btn btn-sm btn-success" href="">Subscibe</a>
+                          <a class="btn btn-sm btn-success" href="{{ route('subscribe', $plan->id) }}">Subscibe</a>
                         </td>
                       </tr>
                       @endforeach

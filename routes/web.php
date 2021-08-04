@@ -28,7 +28,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'member', 'middleware' => ['auth', 'active', 'verified', 'member']], function () {
     Route::get('/', [\App\Http\Controllers\Member\DashboardController::class, 'index'])->name('member');
     Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Member\DashboardController::class, 'profile'])->name('profile');
+
     Route::get('/subscription', [\App\Http\Controllers\Member\DashboardController::class, 'plan'])->name('subscription')->middleware('updated');
+    Route::get('/subscribe/{id}', [\App\Http\Controllers\Member\DashboardController::class, 'subscribe'])->name('subscribe');
+    Route::get('/subscribe-now/{id}', [\App\Http\Controllers\Member\DashboardController::class, 'subscribe_now'])->name('subscribe_now');
+    Route::post('/subscribe-now', [\App\Http\Controllers\Member\DashboardController::class, 'subscribe_now_new'])->name('subscribe_now_new');
 
 
     Route::get('resources', [\App\Http\Controllers\Member\DashboardController::class, 'resources'])->name('resources');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Resource;
+use App\Models\Settings;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -149,5 +150,55 @@ class DashboardController extends Controller
         $data['title'] = 'View Resources';
         $data['resource'] = Resource::find($id);
         return view('member.dashboard.view_res', $data);
+    }
+
+    public function subscribe($id)
+    {
+        $data['title'] = 'Membership Sucbscription';
+        $data['plan'] = Subscription::find($id);
+        $data['setting'] = Settings::find(1);
+        return view('member.dashboard.subscribe', $data);
+    }
+
+    public function subscribe_now($id)
+    {
+        $data['plan'] = Subscription::find($id);
+        $data['setting'] = Settings::find(1);
+        return view('member.dashboard.save', $data);
+    }
+
+    public function subscribe_now_new(Request $request)
+    {
+        $rules = array(
+            'payer_name' => ['required', 'max:255'],
+            'trans_id' => ['required', 'max:255'],
+            'prove' => 'max:5000',
+        );
+        $fieldNames = array(
+            'payer_name'     => 'Payer Name',
+            'trans_id'     => 'Transaction ID',
+            'prove'   => 'Payment Prove',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        $validator->setAttributeNames($fieldNames);
+        if ($validator->fails()) {
+            Session::flash('warning', 'Please check the form again!');
+            return back()->withErrors($validator)->withInput();
+        } else {
+            if ($request->file('prove')) {
+                $file = $request->file('prove');
+                $picture = 'PP' . date('dMY') . time() . '.' . $file->getClientOriginalExtension();
+                $pictureDestination = 'uploads/payment_prove';
+                $file->move($pictureDestination, $picture);
+            }
+            try {
+                Session::flash('success', 'Profile Updated Successfully');
+                return \back();
+            } catch (\Throwable $th) {
+                Session::flash('error', $th->getMessage());
+                return \back();
+                //throw $th;
+            }
+        }
     }
 }

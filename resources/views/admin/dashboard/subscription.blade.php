@@ -91,7 +91,7 @@
                           {{$sn++}}
                         </td>
                         <td>{{$sub->name}}</td>
-                        <td>{{$sub->price}}</td>
+                        <td>₦{{number_format($sub->price)}}</td>
                         <td class="text-nowrap">
                           <a href="#" class="mr-25" data-original-title="Edit" data-toggle="modal" data-target="#exampleModal{{$sub->id}}" data-whatever="@mdo">
                             <i class="fa fa-pencil text-inverse m-r-10"></i>
