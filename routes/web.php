@@ -32,6 +32,7 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'active', 'verified
 
 
     Route::get('resources', [\App\Http\Controllers\Member\DashboardController::class, 'resources'])->name('resources');
+    Route::get('view-resources/{id}', [\App\Http\Controllers\Member\DashboardController::class, 'view_resources'])->name('view_resources');
 
     //Settings
     // Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Student\SettingsController::class, 'index'])->name('student_profile');
@@ -90,6 +91,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     //Resources
     Route::get('resources', [\App\Http\Controllers\Admin\DashboardController::class, 'resources'])->name('admin_resource');
     Route::match(['get', 'post'], 'add-resource', [\App\Http\Controllers\Admin\DashboardController::class, 'add_resource'])->name('admin_add_resource');
+    Route::match(['get', 'post'], 'edit-resource/{id}', [\App\Http\Controllers\Admin\DashboardController::class, 'edit_resource'])->name('admin_edit_resource');
+    Route::get('delete_resources/{id}', [\App\Http\Controllers\Admin\DashboardController::class, 'delete_resources'])->name('admin_delete_resources');
 
     //Settings
     // Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin_profile');

@@ -86,7 +86,7 @@
                   </div>
                   <div class="col-xs-7 text-center data-wrap-right">
                     <h6 class="txt-light">Resources</h6>
-                    <span class="txt-light counter">{{$inactive}}</span>
+                    <span class="txt-light counter">{{$resource}}</span>
                   </div>
                 </div>
               </div>

@@ -76,19 +76,28 @@
                   <table class="table table-hover table-bordered mb-0">
                     <thead>
                       <tr>
+                        <th>S/N</th>
                         <th>Membership Plans</th>
                         <th>Annual Subscription Fee</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
+                      
+                    @isset($plans)
+                      @foreach($plans as $plan)
                       <tr>
-                        <td>Student</td>
-                        <td>1000</td>
+                        <td>
+                          {{$sn++}}
+                        </td>
+                        <td>{{$plan->name}}</td>
+                        <td>{{$plan->price}}</td>
                         <td>
                           <a class="btn btn-sm btn-success" href="">Subscibe</a>
                         </td>
                       </tr>
+                      @endforeach
+                      @endisset
                     </tbody>
                   </table>
                 </div>

@@ -25,7 +25,7 @@
 					<a href="{{ route('admin_payment') }}"><i class="fa fa-fw fa-money"></i> Payments</a>
 				</li>
 				<li>
-					<a href="{{ route('admin_subscription') }}"><i class="fa fa-fw fa-file"></i> Resources</a>
+					<a href="{{ route('admin_resource') }}"><i class="fa fa-fw fa-file"></i> Resources</a>
 				</li>
 				<li>
 					<a href="{{ route('admin_active_member') }}"><i class="fa fa-fw fa-users"></i> Active Members</a>

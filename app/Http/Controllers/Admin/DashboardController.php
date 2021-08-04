@@ -8,6 +8,7 @@ use App\Models\Classes;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Faculties;
+use App\Models\Resource;
 use App\Models\Schools;
 use App\Models\Settings;
 use App\Models\Subject;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
         $this->middleware('auth');
         $this->middleware('admin');
         $this->create_sub = new Subscription();
+        $this->create_res = new Resource();
     }
 
     public function index()
@@ -32,6 +34,7 @@ class DashboardController extends Controller
         $data['title'] = 'Admin Dashboard';
         $data['active'] = User::where(['role' => 'Member', 'status' => 'Active'])->where('member', '!=', 'None')->count();
         $data['inactive'] = User::where(['role' => 'Member', 'status' => 'Active'])->where('member', '=', 'None')->count();
+        $data['resource'] = Resource::count();
         return view('admin.dashboard.index', $data);
     }
 
@@ -252,45 +255,105 @@ class DashboardController extends Controller
     {
         $data['title'] = 'All Resources';
         $data['sn'] = 1;
+        $data['resources'] = Resource::orderBy('id', 'ASC')->get();
         return view('admin.dashboard.all_resources', $data);
+    }
+
+    public function edit_resource($id)
+    {
+        $data['title'] = 'Edit Resources';
+        $data['resource'] = Resource::find($id);
+        return view('admin.dashboard.add-resources', $data);
     }
 
     public function add_resource(Request $request)
     {
         if ($_POST) {
-            $rules = array(
-                'bank' => ['required', 'max:255'],
-                'acc_number' => ['required', 'numeric'],
-                'acc_name' => ['required', 'max:255'],
-            );
-            $fieldNames = array(
-                'bank'   => 'Bank Name',
-                'acc_number'  => 'Account Number',
-                'acc_name'  => 'Account Name'
-            );
-            //dd($request->all());
-            $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($fieldNames);
-            if ($validator->fails()) {
-                Session::flash('warning', 'Please check the form again!');
-                return back()->withErrors($validator)->withInput();
+            if ($request->id) {
+                $rules = array(
+                    'title' => ['required', 'max:255'],
+                    'content' => ['required'],
+                );
+                $fieldNames = array(
+                    'title'   => 'Resource Title',
+                    'content'  => 'Resource Content',
+                    'file'  => 'Resource File'
+                );
+                //dd($request->all());
+                $validator = Validator::make($request->all(), $rules);
+                $validator->setAttributeNames($fieldNames);
+                if ($validator->fails()) {
+                    Session::flash('warning', 'Please check the form again!');
+                    return back()->withErrors($validator)->withInput();
+                } else {
+                    try {
+                        if ($request->file('file')) {
+                            $file = $request->file('file');
+                            $picture = 'RF' . date('dMY') . time() . '.' . $file->getClientOriginalExtension();
+                            $pictureDestination = 'uploads/resources_file';
+                            $file->move($pictureDestination, $picture);
+                        }
+                        $get = Resource::find($request->id);
+                        $get->title = $request->title;
+                        $get->content = $request->content;
+                        $get->file = $request->hasFile('file') ? $picture : $get->file;
+                        $get->save();
+                        Session::flash('success', 'Updated Successfully');
+                        return redirect('admin/resources');
+                    } catch (\Throwable $th) {
+                        Session::flash('error', $th->getMessage());
+                        return back()->withInput();
+                    }
+                }
             } else {
-                try {
-                    $settings = Settings::find(1);
-                    $settings->bank = $request->bank;
-                    $settings->acc_number = $request->acc_number;
-                    $settings->acc_name = $request->acc_name;
-                    $settings->save();
-                    Session::flash('success', 'Account Details Updated Successfully');
-                    return redirect('admin/update-payment-account');
-                } catch (\Throwable $th) {
-                    Session::flash('error', $th->getMessage());
-                    return redirect('admin/update-payment-account');
+                $rules = array(
+                    'title' => ['required', 'max:255'],
+                    'content' => ['required'],
+                    'file' => ['required'],
+                );
+                $fieldNames = array(
+                    'title'   => 'Resource Title',
+                    'content'  => 'Resource Content',
+                    'file'  => 'Resource File'
+                );
+                //dd($request->all());
+                $validator = Validator::make($request->all(), $rules);
+                $validator->setAttributeNames($fieldNames);
+                if ($validator->fails()) {
+                    Session::flash('warning', 'Please check the form again!');
+                    return back()->withErrors($validator)->withInput();
+                } else {
+                    try {
+                        if ($request->file('file')) {
+                            $file = $request->file('file');
+                            $picture = 'RF' . date('dMY') . time() . '.' . $file->getClientOriginalExtension();
+                            $pictureDestination = 'uploads/resources_file';
+                            $file->move($pictureDestination, $picture);
+                        }
+                        $this->create_res->create($request, $picture);
+                        Session::flash('success', 'Created Successfully');
+                        return redirect('admin/resources');
+                    } catch (\Throwable $th) {
+                        Session::flash('error', $th->getMessage());
+                        return back()->withInput();
+                    }
                 }
             }
         } else {
             $data['title'] = 'Add New Resources';
             return view('admin.dashboard.add-resources', $data);
+        }
+    }
+
+    public function delete_resources($id)
+    {
+        try {
+            Resource::find($id)->delete();
+            Session::flash('success', 'Deleted Successfully');
+            return redirect('admin/resources');
+        } catch (\Throwable $th) {
+            Session::flash('error', $th->getMessage());
+            return redirect('admin/resources');
         }
     }
 

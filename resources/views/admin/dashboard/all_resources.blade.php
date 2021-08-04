@@ -38,33 +38,56 @@
                       <tr>
                         <th>S/N</th>
                         <th>Tile</th>
+                        <th>File</th>
                         <th>Date Uploaded</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @isset($members)
-                      @foreach($members as $member)
+                      @isset($resources)
+                      @foreach($resources as $resource)
                       <tr>
                         <td>
                           {{$sn++}}
                         </td>
-                        <td>{{$member->surname}}</td>
-                        <td>{{$member->other_name}}</td>
-                        <td>{{$member->email}}</td>
-                        <td>{{$member->phone_number}}</td>
-                        <td class="text-nowrap">
-                          <a href="{{ route('admin_edit_member', $member->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                        <td>{{$resource->title}}</td>
+                        <td><a download="" href="{{ asset('uploads/resources_file/'.$resource->file) }}" class="btn btn-sm btn-success">Download</a></td>
+                        <td>{{ date('D, M j, Y', strtotime($resource->created_at))}}</td>
+                        <td class=" text-nowrap">
+                          <a href="{{ route('admin_edit_resource', $resource->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                             <i class="fa fa-pencil text-inverse m-r-10"></i>
                           </a>
-                          <a href="{{ route('admin_view_member', $member->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="View">
+                          <a href="#" class="mr-25" data-original-title="View" data-toggle="modal" data-target="#exampleModal{{$resource->id}}" data-whatever="@mdo">
                             <i class="fa fa-eye text-inverse m-r-10"></i>
                           </a>
-                          <a href="{{ route('admin_delete_member', $member->id) }}" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Are you sure you want to delete this record?')">
+                          <a href="{{ route('admin_delete_resources', $resource->id) }}" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Are you sure you want to delete this record?')">
                             <i class="fa fa-close text-danger"></i>
                           </a>
                         </td>
                       </tr>
+
+                      <!-- Edit Sub -->
+                      <div class="modal fade" id="exampleModal{{$resource->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h5 class="modal-title" id="exampleModalLabel1">View Resources </h5>
+                            </div>
+                            <div class="modal-body">
+                              <h3>Title</h3>
+                              <p>{{$resource->title}}</p>
+                              <h3>Content</h3>
+                              <p>{!! $resource->content !!}</p>
+                              <h3>File</h3>
+                              <p><a download="" href="{{ asset('uploads/resources_file/'.$resource->file) }}" class="btn btn-sm btn-success">Download</a></p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       @endforeach
                       @endisset
                     </tbody>

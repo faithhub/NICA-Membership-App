@@ -41,6 +41,7 @@
                         <th>Other Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
+                        <th>Registered On</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -55,6 +56,7 @@
                         <td>{{$member->other_name}}</td>
                         <td>{{$member->email}}</td>
                         <td>{{$member->phone_number}}</td>
+                        <td>{{ date('D, M j, Y', strtotime($member->created_at))}}</td>
                         <td class="text-nowrap">
                           <a href="{{ route('admin_edit_member', $member->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                             <i class="fa fa-pencil text-inverse m-r-10"></i>

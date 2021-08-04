@@ -63,6 +63,7 @@ return array(
     'App\\Models\\Days' => $baseDir . '/app/Models/Days.php',
     'App\\Models\\Department' => $baseDir . '/app/Models/Department.php',
     'App\\Models\\Logbook' => $baseDir . '/app/Models/Logbook.php',
+    'App\\Models\\Resource' => $baseDir . '/app/Models/Resource.php',
     'App\\Models\\Schools' => $baseDir . '/app/Models/Schools.php',
     'App\\Models\\Settings' => $baseDir . '/app/Models/Settings.php',
     'App\\Models\\Subscription' => $baseDir . '/app/Models/Subscription.php',

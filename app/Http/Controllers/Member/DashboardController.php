@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\Resource;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -129,14 +131,23 @@ class DashboardController extends Controller
     public function plan()
     {
         $data['title'] = 'Membership Plan';
-        $data['member'] = $u = User::find(Auth::user()->id);
+        $data['sn'] = 1;
+        $data['plans'] = $u = Subscription::orderby('id', 'ASC')->get();
         return view('member.dashboard.subscription', $data);
     }
 
     public function resources()
     {
         $data['title'] = 'Resources';
-        // $data['member'] = $u = User::find(Auth::user()->id);
+        $data['sn'] = 1;
+        $data['resources'] = Resource::orderBy('id', 'ASC')->get();
         return view('member.dashboard.resources', $data);
+    }
+
+    public function view_resources($id)
+    {
+        $data['title'] = 'View Resources';
+        $data['resource'] = Resource::find($id);
+        return view('member.dashboard.view_res', $data);
     }
 }

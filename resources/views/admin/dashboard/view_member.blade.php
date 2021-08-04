@@ -72,6 +72,10 @@
                           {{$member->status}}
                         </td>
                       </tr>
+                      <tr>
+                        <td width="20%">Registered On</td>
+                        <td>{{ date('D, M j, Y', strtotime($member->created_at))}}</td>
+                      </tr>
                     </tbody>
                   </table>
                   <div class="text-right mt-3">
