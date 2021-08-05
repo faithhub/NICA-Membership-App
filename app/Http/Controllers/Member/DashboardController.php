@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\Payment;
 use App\Models\Resource;
 use App\Models\Settings;
 use App\Models\Subscription;
@@ -19,6 +20,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'member', 'verified']);
+        $this->create_sub = new Payment();
     }
 
 
@@ -133,7 +135,10 @@ class DashboardController extends Controller
     {
         $data['title'] = 'Membership Plan';
         $data['sn'] = 1;
+        $data['snn'] = 1;
+        $data['plan'] = $u = Subscription::find(Auth::user()->member);
         $data['plans'] = $u = Subscription::orderby('id', 'ASC')->get();
+        $data['payments'] = Payment::where('user_id', Auth::user()->id)->orderBy('id', 'ASC')->with('plan:id,name,price')->get();
         return view('member.dashboard.subscription', $data);
     }
 
@@ -172,7 +177,7 @@ class DashboardController extends Controller
         $rules = array(
             'payer_name' => ['required', 'max:255'],
             'trans_id' => ['required', 'max:255'],
-            'prove' => 'max:5000',
+            'prove' => ['required', 'max:5000', 'image'],
         );
         $fieldNames = array(
             'payer_name'     => 'Payer Name',
@@ -192,12 +197,12 @@ class DashboardController extends Controller
                 $file->move($pictureDestination, $picture);
             }
             try {
-                Session::flash('success', 'Profile Updated Successfully');
-                return \back();
+                $this->create_sub->create($request, $picture);
+                Session::flash('success', 'Submitted Successfully');
+                return redirect()->route('subscription');
             } catch (\Throwable $th) {
                 Session::flash('error', $th->getMessage());
                 return \back();
-                //throw $th;
             }
         }
     }

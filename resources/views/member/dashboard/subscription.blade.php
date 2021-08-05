@@ -40,17 +40,19 @@
                         <th>Annual Subscription Fee</th>
                         <th>Subscribed On</th>
                         <th>Expire On</th>
-                        <th>Renew</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Student</td>
-                        <td>1000</td>
-                        <td>nkjbkbjk</td>
-                        <td>nkjbkbjk</td>
-                        <td><a class="btn btn-sm btn-success" href="">Renew</a></td>
+                     @if(Auth::user()->member == "None")
+
+                     @else
+                     <tr>
+                        <td>{{$plan->name}}</td>
+                        <td>₦{{number_format($plan->price)}}</td>
+                        <td>{{ date('D, M j, Y', strtotime($plan->created_at))}}</td>
+                        <td>{{ date('D, M j, Y', strtotime(Auth::user()->member_expire))}}</td>
                       </tr>
+                     @endif
                     </tbody>
                   </table>
                 </div>
@@ -93,7 +95,68 @@
                         <td>{{$plan->name}}</td>
                         <td>₦{{number_format($plan->price)}}</td>
                         <td>
+                        @if(Auth::user()->member == "None")
                           <a class="btn btn-sm btn-success" href="{{ route('subscribe', $plan->id) }}">Subscibe</a>
+                        @else
+                          <a class="btn btn-sm btn-success" disabled>Subscibe</a>
+                        @endif
+                        </td>
+                      </tr>
+                      @endforeach
+                      @endisset
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default card-view">
+          <div class="panel-heading">
+            <div class="pull-left">
+              <h6 class="panel-title txt-dark">Payment History</h6>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+              <div class="table-wrap">
+                <div class="table-responsive">
+                  <table id="example" class="table table-hover display  pb-30">
+                    <thead>
+                      <tr>
+                        <th>S/N</th>
+                        <th>Membership Plan</th>
+                        <th>Amount</th>
+                        <th>Payer Name</th>
+                        <th>Transaction ID</th>
+                        <th>Prove</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    @isset($payments)
+                      @foreach($payments as $payment)
+                      <tr>
+                        <td>
+                          {{$snn++}}
+                        </td>
+                        <td>{{ $payment->plan->name }}</td>
+                        <td>₦{{ number_format($payment->plan->price) }}</td>
+                        <td>{{$payment->payer_name}}</td>
+                        <td>{{$payment->trans_id}}</td>
+                        <td>
+                          <a class="btn btn-sm btn-success" target="blank" href="{{ asset('uploads/payment_prove/'.$payment->prove) }}">View</a>
+                        </td>
+                        <td>
+                          {{$payment->status}}
                         </td>
                       </tr>
                       @endforeach

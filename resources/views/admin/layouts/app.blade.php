@@ -7,16 +7,16 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>NIGERIAN CORROSION ASSOCIATION | {{ $title ?? '' }}</title>
-	<meta name="description" content="Kenny is a Dashboard & Admin Site Responsive Template by hencework." />
-	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Kenny Admin, kennyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-	<meta name="author" content="hencework" />
+	<meta name="description" content="NIGERIAN CORROSION ASSOCIATION MEMBERSHIP APP" />
+	<meta name="keywords" content="NIGERIAN CORROSION ASSOCIATION MEMBERSHIP APP" />
+	<meta name="author" content="Faith Oluwadara" />
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 
-	@include('member.layouts.includes.style')
-	@include('member.layouts.includes.alert')
+	@include('admin.layouts.includes.style')
+	@include('admin.layouts.includes.alert')
 
 </head>
 

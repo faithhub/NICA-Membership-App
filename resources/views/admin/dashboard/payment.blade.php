@@ -37,33 +37,42 @@
                     <thead>
                       <tr>
                         <th>S/N</th>
-                        <th>Surname</th>
-                        <th>Other Name</th>
+                        <th>Member Name</th>
                         <th>Membership Plan</th>
                         <th>Amount</th>
+                        <th>Payer NAme</th>
+                        <th>Transaction ID</th>
                         <th>Payment Prove</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @isset($members)
-                      @foreach($members as $member)
+                      @isset($payments)
+                      @foreach($payments as $payment)
                       <tr>
                         <td>
                           {{$sn++}}
                         </td>
-                        <td>{{$member->surname}}</td>
-                        <td>{{$member->other_name}}</td>
-                        <td>{{$member->email}}</td>
-                        <td>{{$member->phone_number}}</td>
+                        <td>{{$payment->user->surname}} {{$payment->user->other_name}}</td>
+                        <td>{{$payment->plan->name}}</td>
+                        <td>₦{{ number_format($payment->plan->price) }}</td>
+                        <td>{{$payment->payer_name}}</td>
+                        <td>{{$payment->trans_id}}</td>
                         <td class="text-nowrap">
-                          <a href="#" class="mr-25" data-original-title="View" data-toggle="modal" data-target="#exampleModal{{$member->id}}" data-whatever="@mdo">
-                            <i class="fa fa-eye text-inverse m-r-10"></i>
-                          </a>
+                          <a class="btn btn-sm btn-success" target="blank" href="{{ asset('uploads/payment_prove/'.$payment->prove) }}">View</a>
+                          <a class="btn btn-sm btn-success" download="" href="{{ asset('uploads/payment_prove/'.$payment->prove) }}">Download</a>
+                        </td>
+                        <td class="text-nowrap">
+                          @if($payment->status == 'Pending' || $payment->status == 'Declined')                          
+                          <a class="btn btn-sm btn-success" href="{{ route('admin_approve_subscribe', $payment->id) }}" onclick="return confirm('Are you sure you want to Approve this payment?')">Approve</a>
+                          @endif     
+                          @if($payment->status == 'Pending' || $payment->status == 'Approve')
+                          <a class="btn btn-sm btn-danger" href="{{ route('admin_decline_subscribe', $payment->id) }}" onclick="return confirm('Are you sure you want to Decline this payment?')">Decline</a>
+                          @endif                                               
                         </td>
 
                         <!-- Edit Sub -->
-                        <div class="modal fade" id="exampleModal{{$member->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                        <div class="modal fade" id="exampleModal{{$payment->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -75,29 +84,29 @@
                                 <div class="modal-body">
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label mb-10">Surname:</label>
-                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $member->surname }}" disabled>
+                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $payment->surname }}" disabled>
                                   </div>
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label mb-10">Other Name:</label>
-                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $member->other_name }}" disabled>
+                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $payment->other_name }}" disabled>
                                   </div>
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label mb-10">Membership Plan:</label>
-                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $member->member }}" disabled>
+                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $payment->member }}" disabled>
                                   </div>
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label mb-10">Amount:</label>
-                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $member->amount }}" disabled>
+                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $payment->amount }}" disabled>
                                   </div>
                                   <div class="form-group">
                                     <label for="recipient-name" class="control-label mb-10">Payment Transaction ID:</label>
-                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $member->other_name }}" disabled>
+                                    <input type="text" class="form-control" id="recipient-name1" value="{{ $payment->other_name }}" disabled>
                                   </div>
                                 </div>
-                                  <div class="form-group">
-                                    <label for="recipient-name" class="control-label mb-10">Other Name:</label>
-                                    <img>
-                                  </div>
+                                <div class="form-group">
+                                  <label for="recipient-name" class="control-label mb-10">Other Name:</label>
+                                  <img>
+                                </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-danger">Decline</button>

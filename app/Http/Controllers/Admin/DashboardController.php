@@ -8,6 +8,7 @@ use App\Models\Classes;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Faculties;
+use App\Models\Payment;
 use App\Models\Resource;
 use App\Models\Schools;
 use App\Models\Settings;
@@ -15,6 +16,7 @@ use App\Models\Subject;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -208,7 +210,40 @@ class DashboardController extends Controller
     {
         $data['title'] = 'Membership Subscription Payments';
         $data['sn'] = 1;
+        $data['payments'] = Payment::orderBy('id', 'ASC')->with('user:id,surname,other_name')->with('plan:id,name,price')->get();
         return view('admin.dashboard.payment', $data);
+    }
+
+    public function approve_subscribe($id){
+        try {
+            $payment = Payment::find($id);
+            $payment->status = 'Approved';
+
+            $user = User::find($payment->user_id);
+            $user->member = $payment->plan_id;
+            $user->member_expire = Carbon::now()->addYear();
+            $user->save();
+
+            $payment->save();
+            Session::flash('success', 'Approved Successfully');
+            return back();
+        } catch (\Throwable $th) {
+            Session::flash('error', $th->getMessage());
+            return back();
+        }
+    }
+
+    public function decline_subscribe($id){
+        try {
+            $payment = Payment::find($id);
+            $payment->status = 'Declined';
+            $payment->save();
+            Session::flash('success', 'Declined Successfully');
+            return back();
+        } catch (\Throwable $th) {
+            Session::flash('error', $th->getMessage());
+            return back();
+        }
     }
 
     public function add_payment(Request $request)

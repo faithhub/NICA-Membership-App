@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function search()
+    {
+        // $data['results'] = User::where('name','LIKE','%'.$email_or_name.'%')
+        //         ->orWhere('email','LIKE','%'.$email_or_name.'%')
+        //         ->get();
     }
 }

@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->enum('acc_status', ['Updated', 'Notupdated'])->default('Notupdated');
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->enum('role', ['Admin', 'Member'])->default('Member');
-            $table->enum('member', ['None', 'Student', 'Graduate', 'Member', 'Fellow', 'Corporate Firm'])->default('None');
+            $table->string('member')->default('None');
             $table->rememberToken();
             $table->timestamps();
         });

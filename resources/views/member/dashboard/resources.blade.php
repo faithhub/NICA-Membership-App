@@ -55,7 +55,7 @@
                         <td>{{ date('D, M j, Y', strtotime($resource->created_at))}}</td>
                         <td class=" text-nowrap">
                           <a href="{{ route('view_resources', $resource->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="View">
-                            View
+                            Viewx
                           </a>
                         </td>
                       </tr>

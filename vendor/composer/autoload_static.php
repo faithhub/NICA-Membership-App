@@ -667,6 +667,7 @@ class ComposerStaticInitc88499036d91a2a95b2a7e05a56fdbc7
         'App\\Models\\Days' => __DIR__ . '/../..' . '/app/Models/Days.php',
         'App\\Models\\Department' => __DIR__ . '/../..' . '/app/Models/Department.php',
         'App\\Models\\Logbook' => __DIR__ . '/../..' . '/app/Models/Logbook.php',
+        'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
         'App\\Models\\Resource' => __DIR__ . '/../..' . '/app/Models/Resource.php',
         'App\\Models\\Schools' => __DIR__ . '/../..' . '/app/Models/Schools.php',
         'App\\Models\\Settings' => __DIR__ . '/../..' . '/app/Models/Settings.php',

@@ -101,6 +101,11 @@
                                                             <span class="inline-block pr-5">Don't have an account?</span>
                                                             <a type="submit" class="inline-block txt-danger" href="{{ route('register') }}">Sign Up</a>
                                                         </div>
+                                                        
+                                                        <div class="form-group mb-0">
+                                                            <span class="inline-block pr-5"></span>
+                                                            <a type="submit" class="inline-block txt-danger" href="{{ url('index') }}">Search Member</a>
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>

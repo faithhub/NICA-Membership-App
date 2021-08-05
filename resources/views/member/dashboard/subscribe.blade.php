@@ -5,11 +5,11 @@
   <div class="container-fluid">
     <!-- Title -->
     <div class="row heading-bg  bg-green">
-      <div class="col-lg-3 col-md-5 col-sm-4 col-xs-12">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <h5 class="txt-light">{{ $plan->name }} Membership Subscription Plan</h5>
       </div>
       <!-- Breadcrumb -->
-      <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
         <ol class="breadcrumb">
           <li><a href="{{ route('member') }}">Dashboard</a></li>
           <li><a href="#"><span>{{ $plan->name }} Membership Subscription Plan</span></a></li>
