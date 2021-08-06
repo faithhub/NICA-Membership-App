@@ -35,7 +35,7 @@
                   <div class="row mt-40">
                     <div class="col-sm-12">
                       <div class="form-wrap">
-                        <form method="POST" action="{{ route('admin_password') }}">
+                        <form method="POST" action="{{ route('member_password') }}">
                           @csrf
                           <div class="row">
                             <div class="form-group">

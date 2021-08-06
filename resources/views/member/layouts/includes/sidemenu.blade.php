@@ -9,12 +9,11 @@
 		<li>
 			<a href="{{ route('resources') }}" class="{{ request()->is('member/resources*') || request()->is('member/view-resources*') ? 'active' : '' }}"><i class="fa fa-file mr-10"></i>Resources</a>
 		</li>
-		
-		<li>
-			<a href="{{ route('admin_password') }}" class="{{ request()->is('admin/change-password') ? 'active' : '' }}"><i class="fa fa-key mr-10"></i>Change Password</a>
-		</li>
 		<li>
 			<a href="{{ route('profile') }}" class="{{ request()->is('member/profile') ? 'active' : '' }}"><i class="fa fa-users mr-10"></i>Membership Profile</a>
+		</li>		
+		<li>
+			<a href="{{ route('member_password') }}" class="{{ request()->is('member/change-password') ? 'active' : '' }}"><i class="fa fa-key mr-10"></i>Change Password</a>
 		</li>
 		<li>
 			<a href="{{ route('logout') }}" onclick="event.preventDefault();

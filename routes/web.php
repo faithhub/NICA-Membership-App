@@ -32,6 +32,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'member', 'middleware' => ['auth', 'active', 'verified', 'member']], function () {
     Route::get('/', [\App\Http\Controllers\Member\DashboardController::class, 'index'])->name('member');
     Route::match(['get', 'post'], '/profile', [\App\Http\Controllers\Member\DashboardController::class, 'profile'])->name('profile');
+    
+    Route::get('/change-password', [\App\Http\Controllers\Member\ChangePasswordController::class, 'index'])->name('member_password');
+    Route::post('/change-password', [\App\Http\Controllers\Member\ChangePasswordController::class, 'change'])->name('member_password');
 
     Route::get('/subscription', [\App\Http\Controllers\Member\DashboardController::class, 'plan'])->name('subscription')->middleware('updated');
     Route::get('/subscribe/{id}', [\App\Http\Controllers\Member\DashboardController::class, 'subscribe'])->name('subscribe')->middleware('updated');
