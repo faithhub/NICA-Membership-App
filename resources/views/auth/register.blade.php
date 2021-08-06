@@ -12,8 +12,8 @@
     <meta name="author" content="hencework" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('nica.JPG') }}">
+    <link rel="icon" href="{{ asset('nica.JPG') }}" type="image/x-icon">
 
     <!-- vector map CSS -->
     <link href="{{ asset('vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -41,7 +41,7 @@
                         <div class="auth-form  ml-auto mr-auto no-float" style="width: 700px;">
                             <div class="panel panel-default card-view mb-0">
                                 <div class="text-center">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=1635379200&v=beta&t=GwGNg2-PKyZvacCLcd_QO60aFTmu1QbeIWkK_tElsLI" style="max-width: 50px;">
+                                    <img src="{{ asset('nica.JPG') }}" style="max-width: 70px;">
                                     <h4><strong>NIGERIAN CORROSION ASSOCIATION</strong></h4>
                                 </div>
                                 <div class="panel-heading">
@@ -171,10 +171,10 @@
                                                             <span class="inline-block pr-5">Already have an account?</span>
                                                             <a type="submit" class="inline-block txt-danger" href="{{ route('login') }}">Sign In</a>
                                                         </div>
-                                                        
-                                                        <div class="form-group mb-0">
-                                                            <span class="inline-block pr-5"></span>
-                                                            <a type="submit" class="inline-block txt-danger" href="{{ url('index') }}">Search Member</a>
+
+                                                        <div class="form-group mb-0 text-right">
+                                                            <span class="inline-block pr-"></span>
+                                                            <a class="inline-block txt-success" target="blank" href="{{ url('index') }}">Search Member</a>
                                                         </div>
                                                     </form>
                                                 </div>

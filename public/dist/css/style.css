@@ -842,7 +842,7 @@ code {
 }
 
 .bg-green {
-    background: #3cb878 !important;
+    background: #E90721 !important;
 }
 
 .bg-grey {
@@ -858,7 +858,7 @@ code {
 }
 
 .bg-blue {
-    background: #566FC9 !important;
+    background: #E90721 !important;
 }
 
 .bg-pink {
@@ -897,7 +897,7 @@ code {
 
 .txt-primary,
 .text-primary {
-    color: #566FC9;
+    color: #E90721;
 }
 
 .txt-success,
@@ -1066,7 +1066,7 @@ blockquote {
     padding: 15px 20px;
     margin: 0 0 20px;
     font-size: 16px;
-    border-left: 4px solid #566FC9;
+    border-left: 4px solid #E90721;
     background: #f7f7f9;
     color: #2f2c2c;
 }
@@ -1273,8 +1273,8 @@ button.btn-primary.fc-agendaWeek-button,
 .btn-primary.fc-prev-button,
 .btn-primary.fc-next-button,
 .btn-primary.fc-today-button {
-    background: #566fc9;
-    border: solid 2px #566fc9;
+    background: #E90721;
+    border: solid 2px #E90721;
 }
 
 .btn.btn-primary:hover,
@@ -1353,8 +1353,8 @@ button.fc-agendaWeek-button,
 .fc-prev-button,
 .fc-next-button,
 .fc-today-button {
-    background: #3cb878;
-    border: solid 2px #3cb878;
+    background: #E90721;
+    border: solid 2px #E90721;
 }
 
 .btn.btn-success:hover,
@@ -1805,7 +1805,7 @@ button.btn-primary.fc-agendaWeek-button,
 .btn-outline.btn-primary.fc-next-button,
 .btn-outline.btn-primary.fc-today-button {
     border: solid 2px rgba(86, 111, 201, 0.5);
-    color: #566fc9;
+    color: #E90721;
 }
 
 .btn.btn-outline.btn-primary:hover,
@@ -1859,7 +1859,7 @@ button.btn-primary.fc-agendaWeek-button:active,
 .btn-outline.btn-primary.fc-prev-button:active,
 .btn-outline.btn-primary.fc-next-button:active,
 .btn-outline.btn-primary.fc-today-button:active {
-    border: solid 2px #566fc9;
+    border: solid 2px #E90721;
 }
 
 .btn.btn-outline.btn-success,
@@ -2752,7 +2752,7 @@ button.btn-icon-anim.btn-primary.fc-agendaWeek-button:before,
 .btn-icon-anim.btn-primary.fc-prev-button:before,
 .btn-icon-anim.btn-primary.fc-next-button:before,
 .btn-icon-anim.btn-primary.fc-today-button:before {
-    box-shadow: 0 0 0 35px #566fc9 inset;
+    box-shadow: 0 0 0 35px #E90721 inset;
 }
 
 .btn.btn-icon-anim.btn-primary:hover,
@@ -2767,7 +2767,7 @@ button.btn-icon-anim.btn-primary.fc-agendaWeek-button:hover,
 .btn-icon-anim.btn-primary.fc-prev-button:hover,
 .btn-icon-anim.btn-primary.fc-next-button:hover,
 .btn-icon-anim.btn-primary.fc-today-button:hover {
-    color: #566fc9 !important;
+    color: #E90721 !important;
 }
 
 .btn.btn-icon-anim.btn-primary:hover:before,
@@ -2782,7 +2782,7 @@ button.btn-icon-anim.btn-primary.fc-agendaWeek-button:hover:before,
 .btn-icon-anim.btn-primary.fc-prev-button:hover:before,
 .btn-icon-anim.btn-primary.fc-next-button:hover:before,
 .btn-icon-anim.btn-primary.fc-today-button:hover:before {
-    box-shadow: 0 0 0 2px #566fc9 inset;
+    box-shadow: 0 0 0 2px #E90721 inset;
 }
 
 .btn.btn-icon-anim.btn-success:before,
@@ -3709,7 +3709,7 @@ button.fancy-button.btn-primary.btn-0.fc-agendaWeek-button:before,
 .fancy-button.btn-primary.btn-0.fc-prev-button:before,
 .fancy-button.btn-primary.btn-0.fc-next-button:before,
 .fancy-button.btn-primary.btn-0.fc-today-button:before {
-    background: #566fc9;
+    background: #E90721;
 }
 
 .btn.fancy-button.btn-primary.btn-0:hover,
@@ -3986,8 +3986,8 @@ button.fancy-button.btn-warning.btn-0.fc-agendaWeek-button:hover,
 .open .dropdown-toggle.btn-primary.fc-prev-button,
 .open .dropdown-toggle.btn-primary.fc-next-button,
 .open .dropdown-toggle.btn-primary.fc-today-button {
-    background: #566fc9;
-    border: solid 2px #566fc9;
+    background: #E90721;
+    border: solid 2px #E90721;
 }
 
 .open .dropdown-toggle.btn.btn-primary:hover,
@@ -7753,7 +7753,7 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 .ct-series-c .ct-line,
 .ct-series-c .ct-point,
 .ct-series-c .ct-slice-donut {
-    stroke: #566FC9;
+    stroke: #E90721;
 }
 
 .ct-series-d .ct-bar,
@@ -7770,7 +7770,7 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 
 .ct-series-a .ct-area,
 .ct-series-a .ct-slice-pie {
-    fill: #566FC9;
+    fill: #E90721;
 }
 
 .ct-series-b .ct-area,
@@ -8196,8 +8196,8 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 
 .checkbox-primary input[type="checkbox"]:checked+label::before,
 .checkbox-primary input[type="radio"]:checked+label::before {
-    background-color: #566fc9;
-    border-color: #566fc9;
+    background-color: #E90721;
+    border-color: #E90721;
 }
 
 .checkbox-danger input[type="checkbox"]:checked+label::before,
@@ -8226,8 +8226,8 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 
 .checkbox-primary input[type="checkbox"]:indeterminate+label::before,
 .checkbox-primary input[type="radio"]:indeterminate+label::before {
-    background-color: #566fc9;
-    border-color: #566fc9;
+    background-color: #E90721;
+    border-color: #E90721;
 }
 
 .checkbox-danger input[type="checkbox"]:indeterminate+label::before,
@@ -8255,15 +8255,15 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 }
 
 .radio-primary input[type="radio"]+label::after {
-    background-color: #566fc9;
+    background-color: #E90721;
 }
 
 .radio-primary input[type="radio"]:checked+label::before {
-    border-color: #566fc9;
+    border-color: #E90721;
 }
 
 .radio-primary input[type="radio"]:checked+label::after {
-    background-color: #566fc9;
+    background-color: #E90721;
 }
 
 .radio-danger input[type="radio"]+label::after {
@@ -8439,7 +8439,7 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 }
 
 .file .icon i {
-    color: #566FC9;
+    color: #E90721;
     display: table-cell;
     font-size: 30px;
     vertical-align: middle;
@@ -8839,7 +8839,7 @@ a.compose-mail {
 }
 
 .panel-primary>.panel-heading {
-    background-color: #566FC9;
+    background-color: #E90721;
 }
 
 .panel-inverse>.panel-heading {
@@ -9217,7 +9217,7 @@ a.compose-mail {
 
 .label.label-primary,
 .label-primary.jvectormap-tip {
-    background: #566FC9;
+    background: #E90721;
 }
 
 .label.label-success,
@@ -9251,7 +9251,7 @@ a.compose-mail {
 }
 
 .badge.badge-primary {
-    background: #566FC9;
+    background: #E90721;
     color: #fff;
 }
 
@@ -9348,7 +9348,7 @@ a.compose-mail {
 }
 
 .progress-bar-primary {
-    background: #566FC9;
+    background: #E90721;
 }
 
 .progress-bar-success {
@@ -9922,7 +9922,7 @@ a.compose-mail {
 }
 
 .timeline>li>.timeline-panel.bg-blue:after {
-    border-left-color: #566FC9;
+    border-left-color: #E90721;
 }
 
 .timeline>li>.timeline-panel.bg-green:after {
@@ -9970,7 +9970,7 @@ a.compose-mail {
 }
 
 .timeline>li.timeline-inverted>.timeline-panel.bg-blue:after {
-    border-right-color: #566FC9;
+    border-right-color: #E90721;
 }
 
 .timeline>li.timeline-inverted>.timeline-panel.bg-green:after {
@@ -10129,12 +10129,12 @@ button.fc-agendaWeek-button {
 }
 
 .sl-primary {
-    border-left-color: #566FC9;
+    border-left-color: #E90721;
 }
 
 .sl-primary:before,
 .sl-primary:last-child:after {
-    background-color: #566FC9;
+    background-color: #E90721;
 }
 
 .sl-success {
@@ -10747,7 +10747,7 @@ ul.inbox-nav li a:focus {
         border-right-color: #f15b26;
     }
     ul.timeline>li>.timeline-panel.bg-blue:after {
-        border-right-color: #566FC9;
+        border-right-color: #E90721;
     }
     ul.timeline>li>.timeline-panel.bg-green:after {
         border-right-color: #3cb878;

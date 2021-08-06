@@ -12,8 +12,8 @@
 	<meta name="author" content="Faith Oluwadara" />
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="{{ asset('nica.JPG') }}">
+	<link rel="icon" href="{{ asset('nica.JPG') }}" type="image/x-icon">
 
 	@include('admin.layouts.includes.style')
 	@include('admin.layouts.includes.alert')

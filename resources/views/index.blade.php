@@ -7,13 +7,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>NIGERIAN CORROSION ASSOCIATION | {{ $title ?? '' }}</title>
-	<meta name="description" content="NIGERIAN CORROSION ASSOCIATION MEMBERSHIP APP" />
-	<meta name="keywords" content="NIGERIAN CORROSION ASSOCIATION MEMBERSHIP APP" />
-	<meta name="author" content="Faith Oluwadara" />
+  <meta name="description" content="NIGERIAN CORROSION ASSOCIATION MEMBERSHIP APP" />
+  <meta name="keywords" content="NIGERIAN CORROSION ASSOCIATION MEMBERSHIP APP" />
+  <meta name="author" content="Faith Oluwadara" />
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('nica.JPG') }}">
+  <link rel="icon" href="{{ asset('nica.JPG') }}" type="image/x-icon">
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
   <!-- Bootstrap Wysihtml5 css -->

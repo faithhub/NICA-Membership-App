@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ChangePasswordController extends Controller
 {
+    
     public function change(Request $request)
     {
         $rules = array(
@@ -54,6 +55,6 @@ class ChangePasswordController extends Controller
     public function index()
     {
         $data['title'] = 'Change Password';
-        return view('admin.dashboard.change_password', $data);
+        return view('member.dashboard.change_password', $data);
     }
 }

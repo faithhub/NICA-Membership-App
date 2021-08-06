@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block mr-20 pull-left" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-	<a href="index.html">
-		<img class="brand-img pull-left" src="{{ asset('dist/img/logo.png') }}" alt="brand" /></a>
+	<a href="{{ route('member') }}">
+		<img class="brand-img pull-left" src="{{ asset('nica.JPG') }}" alt="brand" style="max-width: 50px;"></a>
 	<ul class="nav navbar-right top-nav pull-right">
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">

@@ -42,6 +42,10 @@
 		<li>
 			<a href="{{ route('admin_profile') }}" class="{{ request()->is('admin/profile') ? 'active' : '' }}"><i class="fa fa-user mr-10"></i>My Profile</a>
 		</li>
+
+		<li>
+			<a href="{{ route('admin_password') }}" class="{{ request()->is('admin/change-password') ? 'active' : '' }}"><i class="fa fa-key mr-10"></i>Change Password</a>
+		</li>
 		<li>
 			<a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="icon-lock mr-10"></i>Logout</a>
