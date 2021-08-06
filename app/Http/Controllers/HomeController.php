@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        // $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -27,10 +27,23 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        // $data['results'] = User::where('name','LIKE','%'.$email_or_name.'%')
-        //         ->orWhere('email','LIKE','%'.$email_or_name.'%')
-        //         ->get();
+        if ($_POST) {
+            //dd($request->all());
+            $data['results'] = $r = User::where(['role' => 'Member', 'status' => 'Active'])->where('member', '!=', 'None')
+                ->orWhere('surname', 'LIKE', '%' . $request->surname . '%')
+                ->orWhere('other_name', 'LIKE', '%' . $request->other_name . '%')
+                ->orWhere('zone', 'LIKE', '%' . $request->zone . '%')
+                ->orWhere('area_specs', 'LIKE', '%' . $request->spec . '%')
+                ->get();
+            $data['title'] = 'NIGERIAN CORROSION ASSOCIATION, Search Member';
+            $data['sn'] = 1;
+            // dd($r);
+            return view('index', $data);
+        } else {
+            $data['title'] = 'NIGERIAN CORROSION ASSOCIATION, Search Member';
+            return view('index', $data);
+        }
     }
 }

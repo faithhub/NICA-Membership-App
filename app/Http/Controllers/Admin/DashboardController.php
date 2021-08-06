@@ -457,5 +457,6 @@ class DashboardController extends Controller
             Session::flash('error', $th->getMessage());
             return redirect('admin');
         }
+
     }
 }

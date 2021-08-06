@@ -60,21 +60,22 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="panel panel-default card-view">
           <div class="panel-heading">
-                                <div class="text-center">
-                                    <img src="{{ asset('nica.JPG') }}" style="max-width: 70px;">
-                                    <h4><strong>NIGERIAN CORROSION ASSOCIATION</strong></h4>
-                                </div>
+            <div class="text-center">
+              <img src="{{ asset('nica.JPG') }}" style="max-width: 70px;">
+              <h4><strong>NIGERIAN CORROSION ASSOCIATION</strong></h4>
+            </div>
             <div class="clearfix"></div>
           </div>
           <div class="panel-wrapper collapse in">
             <div class="panel-body">
               <div class="col-12">
-                <form>
+                <form method="POST" action="{{ route('search') }}">
+                  @csrf
                   <div class="row">
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label class="control-label mb-10" for="exampleInputuname">Surname</label>
-                        <input type="text" class="form-control" id="exampleInputuname_2" value="" name="surname" />
+                        <input type="text" class="form-control" id="exampleInputuname_2" value="{{ old('surname') }}" name="surname" />
                         @error('surname')
                         <span class="invalid-feedback" role="alert" style="display: block;">
                           <strong>{{ $message }}</strong>
@@ -85,7 +86,7 @@
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label class="control-label mb-10" for="exampleInputEmail_2">Other Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail_2" value="" name="other_name">
+                        <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ old('other_name') }}" name="other_name">
                         @error('other_name')
                         <span class="invalid-feedback" role="alert" style="display: block;">
                           <strong>{{ $message }}</strong>
@@ -96,8 +97,8 @@
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label class="control-label mb-10" for="exampleInputEmail_2">Zone</label>
-                        <input type="text" class="form-control" id="exampleInputEmail_2" value="" name="other_name">
-                        @error('other_name')
+                        <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ old('zone') }}" name="zone">
+                        @error('zone')
                         <span class="invalid-feedback" role="alert" style="display: block;">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -107,8 +108,8 @@
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label class="control-label mb-10" for="exampleInputEmail_2">Specialization</label>
-                        <input type="text" class="form-control" id="exampleInputEmail_2" value="" name="other_name">
-                        @error('other_name')
+                        <input type="text" class="form-control" id="exampleInputEmail_2" value="{{ old('spec') }}" name="spec">
+                        @error('spec')
                         <span class="invalid-feedback" role="alert" style="display: block;">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -131,31 +132,31 @@
                     <thead>
                       <tr>
                         <th>S/N</th>
-                        <th>Tile</th>
-                        <th>File</th>
-                        <th>Date Uploaded</th>
+                        <th>Name</th>
+                        <th>Zone</th>
+                        <th>Area of Specification</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @isset($resources)
-                      @foreach($resources as $resource)
+                      @isset($results)
+                      @foreach($results as $result)
                       <tr>
                         <td>
                           {{$sn++}}
                         </td>
-                        <td>{{$resource->title}}</td>
-                        <td><a download="" href="{{ asset('uploads/resources_file/'.$resource->file) }}" class="btn btn-sm btn-success">Download</a></td>
-                        <td>{{ date('D, M j, Y', strtotime($resource->created_at))}}</td>
+                        <td><strong>{{$result->surname}} {{$result->other_name}}</strong></td>
+                        <td><strong>{{$result->zone}}</strong></td>
+                        <td><strong>{{$result->area_specs}}</strong></td>
                         <td class=" text-nowrap">
-                          <a href="{{ route('view_resources', $resource->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="View">
-                            Viewx
+                          <a href="" class="mr-25 btn btn-success" data-toggle="tooltip" data-original-title="View">
+                            View
                           </a>
                         </td>
                       </tr>
 
                       <!-- Edit Sub -->
-                      <div class="modal fade" id="exampleModal{{$resource->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                      <div class="modal fade" id="exampleModal{{$result->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -164,11 +165,11 @@
                             </div>
                             <div class="modal-body">
                               <h3>Title</h3>
-                              <p>{{$resource->title}}</p>
+                              <p>{{$result->title}}</p>
                               <h3>Content</h3>
-                              <p>{!! $resource->content !!}</p>
+                              <p>{!! $result->content !!}</p>
                               <h3>File</h3>
-                              <p><a download="" href="{{ asset('uploads/resources_file/'.$resource->file) }}" class="btn btn-sm btn-success">Download</a></p>
+                              <p><a download="" href="{{ asset('uploads/resources_file/'.$result->file) }}" class="btn btn-sm btn-success">Download</a></p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

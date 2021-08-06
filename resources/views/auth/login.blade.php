@@ -105,7 +105,7 @@
 
                                                         <div class="form-group mb-0 text-right">
                                                             <span class="inline-block pr-"></span>
-                                                            <a class="inline-block txt-success" target="blank" href="{{ url('index') }}">Search Member</a>
+                                                            <a class="inline-block txt-success" target="blank" href="{{ route('search') }}">Search Member</a>
                                                         </div>
                                                     </form>
                                                 </div>
