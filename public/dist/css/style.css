@@ -8019,7 +8019,9 @@ button.btn-small.btn-select.fc-agendaWeek-button,
 /*Notification*/
 
 .alert {
-    border-radius: 0;
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+    border-radius: 45px;
     border: none;
     color: #fff;
 }

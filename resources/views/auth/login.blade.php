@@ -16,8 +16,9 @@
     <link rel="icon" href="{{ asset('nica.JPG') }}" type="image/x-icon">
 
     <!-- vector map CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
     <link href="{{ asset('vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-
+    @include('admin.layouts.includes.alert')
 
 
     <!-- Custom CSS -->

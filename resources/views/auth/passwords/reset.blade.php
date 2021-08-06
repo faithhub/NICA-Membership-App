@@ -1,158 +1,155 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Mirrored from hencework.com/theme/kenny/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Jul 2021 16:25:39 GMT -->
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Siwes Project - </title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Bootstrap Icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-    <!-- SimpleLightbox plugin CSS-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{ asset('web/css/styles.css') }}" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>NIGERIAN CORROSION ASSOCIATION, MEMBERSHIP RESET PASSWORD PAGE</title>
+    <meta name="description" content="NIGERIAN CORROSION ASSOCIATION." />
+    <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Kenny Admin, NIGERIAN CORROSION ASSOCIATION, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    <meta name="author" content="hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('nica.JPG') }}">
+    <link rel="icon" href="{{ asset('nica.JPG') }}" type="image/x-icon">
+
+    <!-- vector map CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link href="{{ asset('vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    @include('admin.layouts.includes.alert')
+
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('dist/css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">Siwes Project</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Sign Up</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container px-4 px-lg-5 h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center">
-                <div class="col-lg-4 offset-lg-4 text-white">
-                    <h2 class="text-white">Login Form</h2>
-                    <br>
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" aria-describedby="emailHelp" name="email" value="{{ old('email') }}" required>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+<body>
+    <!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
+
+    <div class="wrapper pa-0">
+
+        <!-- Main Content -->
+        <div class="page-wrapper pa-0 ma-0">
+            <div class="container-fluid">
+                <!-- Row -->
+                <div class="table-struct full-width full-height">
+                    <div class="table-cell vertical-align-middle">
+                        <div class="auth-form  ml-auto mr-auto no-float">
+                            <div class="panel panel-default card-view mb-0">
+                                <div class="text-center">
+                                    <img src="{{ asset('nica.JPG') }}" style="max-width: 70px;">
+                                    <h4><strong>NIGERIAN CORROSION ASSOCIATION</strong></h4>
+                                </div>
+                                <div class="panel-heading">
+                                    <div class="pull-left">
+                                        <h6 class="panel-title txt-dark"></h6>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                                <div class="form-wrap">
+                                                    <div class="text-center">
+                                                        @if (session('status'))
+                                                        <div class="alert alert-success" role="alert">
+                                                            {{ session('status') }}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                    <form method="POST" action="{{ route('password.update') }}">
+                                                        @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10" for="exampleInputEmail_2">Email address</label>
+                                                            <div class="input-group">
+                                                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail_2" name="email" value="{{ $email ?? old('email') }}" placeholder="Email Address">
+                                                                <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+                                                            </div>
+                                                            @error('email')
+                                                            <span class="invalid-feedback" role="alert" style="display: block;">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10" for="exampleInputEmail_2">Password</label>
+                                                            <div class="input-group">
+                                                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputEmail_2" name="password">
+                                                                <div class="input-group-addon"><i class="icon-lock"></i></div>
+                                                            </div>
+                                                            @error('password')
+                                                            <span class="invalid-feedback" role="alert" style="display: block;">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10" for="exampleInputEmail_2">Confirm Password</label>
+                                                            <div class="input-group">
+                                                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="exampleInputEmail_2" name="password_confirmation">
+                                                                <div class="input-group-addon"><i class="icon-lock"></i></div>
+                                                            </div>
+                                                            @error('password_confirmation')
+                                                            <span class="invalid-feedback" role="alert" style="display: block;">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-success btn-block">{{ __('Reset Password') }}</button>
+                                                        </div>
+                                                        <div class="form-group mb-0">
+                                                            <span class="inline-block pr-5">Remember password?</span>
+                                                            <a type="submit" class="inline-block txt-danger" href="{{ route('login') }}">Sign In</a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-xl">Submit</button>
-                    </form>
-                    <br>
-                    @if (Route::has('password.request'))
-                    <a class="btn btn-link text-white" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                    @endif
+                    </div>
                 </div>
+                <!-- /Row -->
             </div>
+
         </div>
-    </header>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="{{ asset('web/js/scripts.js') }}"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- JavaScript -->
+
+    <!-- jQuery -->
+    <script src="{{ asset('vendors/bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="{{ asset('dist/js/jquery.slimscroll.js') }}"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="{{ asset('dist/js/dropdown-bootstrap-extended.js') }}"></script>
+
+    <!-- Init JavaScript -->
+    <script src="{{ asset('dist/js/init.js') }}"></script>
 </body>
 
+<!-- Mirrored from hencework.com/theme/kenny/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Jul 2021 16:25:40 GMT -->
+
 </html>
-@endsection
