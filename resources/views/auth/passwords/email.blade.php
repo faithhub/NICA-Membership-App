@@ -42,7 +42,7 @@
                         <div class="auth-form  ml-auto mr-auto no-float">
                             <div class="panel panel-default card-view mb-0">
                                 <div class="text-center">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=1635379200&v=beta&t=GwGNg2-PKyZvacCLcd_QO60aFTmu1QbeIWkK_tElsLI" style="max-width: 50px;">
+                                    <img src="{{ asset('nica.JPG') }}" style="max-width: 70px;">
                                     <h4><strong>NIGERIAN CORROSION ASSOCIATION</strong></h4>
                                 </div>
                                 <div class="panel-heading">
